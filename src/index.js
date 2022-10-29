@@ -4,17 +4,18 @@ import ReactDOM from 'react-dom/client';
 // import Salutation from './components/presentation.js';
 // import App from './components/App.js';
 // import Voiture from './components/Voiture.js';
-import Jeu from "./components/Jeu.js"
+import Jeu from './components/Jeu.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // const displomes = ["Bac , Licence , Master"];
 // const specialite={id:1,nomSpecialite:"Informatique"} ;
 // const etat = false;
 root.render(
-	(<React.StrictMode>
-     <Jeu
-			nombreCache = {6}
-		/>
+	
+	<React.StrictMode>
+		<Jeu nombreCache={6} />
+
+
 		{/* <State
 			immatriculation=" 01 A 12893"
 			color=" Blue"
@@ -33,5 +34,5 @@ root.render(
         <h3>YYYYYYYYYYYYYYYYYY</h3>
       </Salutation>
     )} */}
-	</React.StrictMode>)
+	</React.StrictMode>
 );

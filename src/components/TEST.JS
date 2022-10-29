@@ -15,43 +15,16 @@ class Jeu extends react.Component {
 			compteur: 0,
 			nombreCache: props.nombreCache,
 			nombreGenere: null,
-			disabled1: false,
-			disabled2: true,
-		};
-	}
-	// refrespage(){
-	// 	window.location.reload(false)
-	// }
-	jouer() {
-		
-		this.setState({
-			compteur: 0,
 			disabled1: true,
 			disabled2: false,
-			nombreGenere: null,
-		});
+            resultat:null
+		};
 	}
-	generer() {
-		const valeur = Math.floor(Math.random() * 6) + 1;
-		if (this.state.nombreGenere === this.state.nombreCache) {
-			this.setState({
-				compteur: 0,
-				disabled1: false,
-				disabled2: true,
-				nombreGenere: null,
-				
-				
-				  
-			});
-			// this.refrespage()
-		} else {
-			this.setState({
-				compteur: this.state.compteur + 1,
-				nombreGenere: valeur,
-				disabled1: true,
-				disabled2: false,
-			});
-		}
+	jouer() {
+		this.setState({
+			compteur: this.state.compteur + 1,
+			nombreGenere: Math.floor(Math.random() * 6) + 1,
+		});
 	}
 
 	changerNombreC(e) {
@@ -69,8 +42,8 @@ class Jeu extends react.Component {
 	render() {
 		const valeur1 = this.state.nombreCache;
 		const valeur2 = this.state.nombreGenere;
-		// const conpteurV = this.state.compteur;
-		// const Photo = Jeu.Photos;
+		const conpteurV = this.state.compteur;
+		const Photo = Jeu.Photos;
 
 		return (
 			<div>
@@ -89,7 +62,7 @@ class Jeu extends react.Component {
 					<b>Aléaratoire géneré : {this.state.nombreGenere}</b>{' '}
 					<img
 						style={{ width: '100px' }}
-						src={Jeu.Photos[valeur2 - 1]}
+						src={Photo[valeur2 - 1]}
 						alt="profil"
 					/>
 				</div>
@@ -98,8 +71,8 @@ class Jeu extends react.Component {
 					{valeur1 === valeur2 ? 'Vous avez gagné' : ''}
 				</h2>
 				<button
-					onClick={() => this.generer()}
-					disabled={this.state.disabled2}
+					onClick={() => this.jouer()}
+					disabled={conpteurV === 0 ? true : false}
 					id="btn1"
 				>
 					Generer
@@ -107,7 +80,7 @@ class Jeu extends react.Component {
 				<button
 					style={{ marginLeft: '20px' }}
 					onClick={() => this.jouer()}
-					disabled={this.state.disabled1}
+					disabled={conpteurV != 0 ? true : false}
 					id="btn2"
 				>
 					Jouer
